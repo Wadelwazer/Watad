@@ -1,8 +1,11 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+// import 'package:dropdown_button2/dropdown_button2.dart';
+// import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
+import 'package:watad/constant/valid.dart';
 import 'package:watad/presintation/screen/verficationotp.dart';
 import 'package:watad/presintation/widget/customeButtom.dart';
 import 'package:watad/presintation/widget/custome_textformfield.dart';
@@ -20,7 +23,7 @@ class _SignupState extends State<Signup> {
   TextEditingController password = TextEditingController();
   TextEditingController fullname = TextEditingController();
   final TextEditingController textEditingController = TextEditingController();
-
+  GlobalKey<FormState> forms = GlobalKey();
   String _selectedcity = "الرياض";
   List<String> citylist = [
     "الرياض",
@@ -47,6 +50,7 @@ class _SignupState extends State<Signup> {
       ),
       body: Container(
         child: Form(
+          key: forms,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -71,18 +75,36 @@ class _SignupState extends State<Signup> {
                 hinttext: "Full Name".tr(context),
                 controller: fullname,
                 star: false,
+                valid: (val) {
+                  return ValidInput(val!, 10, 15);
+                },
               ),
               Container(
                 width: 200,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: gold, width: 1)),
                 child: TextFormField(
+                  validator: (val) {
+                    return ValidInput(val!, 10, 15);
+                  },
                   keyboardType: TextInputType.number,
                   controller: phonenumber,
                   decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: gold)),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: gold)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: gold)),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: gold)),
+                      disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: gold)),
                       hintText: "Phone Number".tr(context),
                       border: InputBorder.none,
                       prefixIcon: const Icon(
@@ -176,7 +198,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              Customebuttom(
+              CustomeButtom(
                 text: "Signup".tr(context),
                 onpress: () {
                   Navigator.of(context).push(MaterialPageRoute(

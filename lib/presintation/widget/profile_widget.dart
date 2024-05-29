@@ -1,4 +1,7 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:flutter/material.dart';
+import 'package:watad/constant/my_color.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
@@ -49,9 +52,9 @@ class ProfileWidget extends StatelessWidget {
         color: Colors.white,
         all: 3,
         child: buildCircle(
-          color: color,
+          color: grey,
           all: 8,
-          child: Icon(
+          child: const Icon(
             Icons.edit,
             color: Colors.white,
             size: 20,

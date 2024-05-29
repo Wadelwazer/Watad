@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../services/language_cache_helper.dart';
+import '../../services/language_cache_helper.dart';
 
 part 'locale_state.dart';
 

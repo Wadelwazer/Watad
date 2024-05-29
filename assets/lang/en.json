@@ -25,6 +25,17 @@
     "Resend":"Resend",
     "Confirm":"Confirm",
     "Service Orders":"Service Orders",
-    "Service Provider":"Service Provider"
-
+    "Service Provider":"Service Provider",
+    "About":"About",
+    "Chatting":"Chatting",
+    "Rate": "Rate",
+    "Add Post":"Add Post",
+    "Add":"Add",
+    "Search...":"Search...",
+    "Type of Service":"Type of Service",
+    "Service Order": "Service Order",
+    "Service Provide": "Service Provide",
+    "Type of Post":"Type of Post",
+"Favorite":"Favorite",
+"Add to Favorite":"Add to Favorite"
 }

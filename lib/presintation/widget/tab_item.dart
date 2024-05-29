@@ -24,11 +24,11 @@ class TabItem extends StatelessWidget {
                   child: Center(
                     child: Text(
                       count > 9 ? "9+" : count.toString(),
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ),
                 )
-              : SizedBox(
+              : const SizedBox(
                   width: 0,
                   height: 0,
                 )

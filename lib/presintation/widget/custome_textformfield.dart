@@ -8,32 +8,47 @@ class CustomeText extends StatelessWidget {
   final IconData? icon;
   final bool? star;
   TextEditingController? controller;
+  String? Function(String?) valid;
   CustomeText(
       {super.key,
       required this.icon,
       required this.hinttext,
       required this.controller,
-      this.star});
+      this.star,
+      required this.valid});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 200,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: gold, width: 1)),
       child: TextFormField(
+        validator: valid,
         controller: controller,
-        obscureText: star!,
         decoration: InputDecoration(
-            hintText: hinttext!,
-            //  hintStyle: TextStyle(color: blue),
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              icon!,
-              color: gold,
-            )),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: gold)),
+          focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: gold)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: gold)),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: gold)),
+          disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: gold)),
+          hintText: hinttext!,
+          //  hintStyle: TextStyle(color: blue),
+          border: InputBorder.none,
+          prefixIcon: Icon(
+            icon!,
+            color: gold,
+          ),
+        ),
       ),
     );
   }

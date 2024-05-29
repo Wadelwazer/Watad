@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_super_parameters
+
 import 'package:flutter/material.dart';
+import 'package:watad/constant/my_color.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
@@ -13,11 +16,17 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape: StadiumBorder(),
-          backgroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+          shape: const StadiumBorder(),
+          backgroundColor: grey,
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         ),
-        child: Text(text),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'ElMessiri',
+          ),
+        ),
         onPressed: onClicked,
       );
 }

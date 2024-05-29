@@ -1,12 +1,12 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: sort_child_properties_last, file_names
 
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
 
-class Customebuttom extends StatelessWidget {
+class CustomeButtom extends StatelessWidget {
   final String? text;
   void Function()? onpress;
-  Customebuttom({super.key, this.text, this.onpress});
+  CustomeButtom({super.key, this.text, this.onpress});
   @override
   Widget build(BuildContext context) {
     return Container(

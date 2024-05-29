@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:watad/business_logic/cubit/locale_cubit.dart';
 import 'package:watad/constant/my_color.dart';
-import 'package:watad/cubit/locale_cubit.dart';
+import 'package:watad/constant/valid.dart';
+import 'package:watad/main.dart';
 import 'package:watad/presintation/screen/landingpage.dart';
 import 'package:watad/presintation/screen/signup.dart';
 import 'package:watad/presintation/widget/customeButtom.dart';
@@ -17,64 +19,61 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController phonenumber = TextEditingController();
   TextEditingController password = TextEditingController();
+  GlobalKey<FormState> forms = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: grey,
-        elevation: 0,
-        actions: [
-          //localization choises
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              alignment: Alignment.topLeft,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    child: const FaIcon(
-                      FontAwesomeIcons.earthAsia,
-                      color: gold,
-                    ),
+      appBar: AppBar(backgroundColor: grey, elevation: 0, actions: [
+        //localization choises
+        Container(
+            margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            alignment: Alignment.topLeft,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: const FaIcon(
+                    FontAwesomeIcons.earthAsia,
+                    color: Colors.white,
                   ),
-                  BlocConsumer<LocaleCubit, ChangeLocaleState>(
-                    listener: (context, state) {
-                      setState(() {});
-                    },
-                    builder: (context, state) {
-                      return DropdownButton<String>(
-                        style: const TextStyle(color: Colors.white),
-                        dropdownColor: gold,
-                        focusColor: Colors.white,
-                        value: state.locale.languageCode,
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.white,
-                        ),
-                        items: ['ar', 'en'].map((String items) {
-                          return DropdownMenuItem<String>(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            BlocProvider.of<LocaleCubit>(context)
-                                .changeLanguage(newValue);
+                ),
+                BlocConsumer<LocaleCubit, ChangeLocaleState>(
+                  listener: (context, state) {
+                    setState(() {});
+                  },
+                  builder: (context, state) {
+                    return DropdownButton<String>(
+                      style: const TextStyle(color: Colors.white),
+                      dropdownColor: gold,
+                      focusColor: Colors.white,
+                      value: state.locale.languageCode,
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.white,
+                      ),
+                      items: ['ar', 'en'].map((String items) {
+                        return DropdownMenuItem<String>(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        if (newValue != null) {
+                          BlocProvider.of<LocaleCubit>(context)
+                              .changeLanguage(newValue);
 
-                            setState(() {});
-                          }
-                        },
-                      );
-                    },
-                  ),
-                ],
-              )),
-          //localaization region end here
-        ],
-      ),
+                          setState(() {});
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
+            )),
+        //localaization region end here
+      ]),
       // backgroundColor: Colors.grey[800],
       body: Column(
         children: [
@@ -99,39 +98,59 @@ class _LoginState extends State<Login> {
           Container(
             margin: const EdgeInsets.only(top: 70),
             child: Form(
+                key: forms,
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  width: 200,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: gold, width: 1)),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: phonenumber,
-                    decoration: InputDecoration(
-                        hintText: "Phone Number".tr(context),
-                        border: InputBorder.none,
-                        prefixIcon: const Icon(
-                          Icons.phone_android_outlined,
-                          color: gold,
-                        )),
-                  ),
-                ),
-                Customebuttom(
-                  text: "Login".tr(context),
-                  onpress: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const LandingPage(),
-                    ));
-                  },
-                ),
-              ],
-            )),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      width: 200,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: phonenumber,
+                        validator: (val) {
+                          return ValidInput(val!, 10, 15);
+                        },
+                        decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: gold)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: gold)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: gold)),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: gold)),
+                            disabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: gold)),
+                            hintText: "Phone Number".tr(context),
+                            border: InputBorder.none,
+                            prefixIcon: const Icon(
+                              Icons.phone_android_outlined,
+                              color: gold,
+                            )),
+                      ),
+                    ),
+                    CustomeButtom(
+                      text: "Login".tr(context),
+                      onpress: () {
+                        if (forms.currentState!.validate()) {
+                          sharedpref.setString("phonenumber", phonenumber.text);
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => const LandingPage(),
+                          ));
+                        }
+                      },
+                    ),
+                  ],
+                )),
           ),
           //sign up
           Row(
