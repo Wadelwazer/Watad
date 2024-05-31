@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     if (sharedpref.getString("tips") == "1") {
-      tips = true;
+      tips = false;
     } else {
       tips = false;
     }

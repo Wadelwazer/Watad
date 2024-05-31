@@ -42,24 +42,29 @@ class _OnBoardingState extends State<OnBoarding> {
         elevation: 0,
       ),
       body: Container(
+        margin: const EdgeInsets.only(top: 50),
         child: IntroductionScreen(
             globalBackgroundColor: Colors.white,
             scrollPhysics: BouncingScrollPhysics(),
             pages: [
               PageViewModel(
-                  titleWidget: Text(
-                    onbaordinglist[0]['title'].toString(),
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'ElMessiri',
-                        fontSize: 30),
-                  ),
-                  body: onbaordinglist[0]['subtitle'],
-                  image: Image.asset(
-                    onbaordinglist[0]['image'].toString(),
-                    height: 400,
-                    width: 400,
-                  )),
+                titleWidget: Text(
+                  onbaordinglist[0]['title'].toString(),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'ElMessiri',
+                      fontSize: 30),
+                ),
+                bodyWidget: Text(
+                  onbaordinglist[0]['subtitle'].toString(),
+                  style: TextStyle(fontFamily: 'ElMessiri', fontSize: 18),
+                ),
+                image: Image.asset(
+                  onbaordinglist[0]['image'].toString(),
+                  height: 400,
+                  width: 400,
+                ),
+              ),
               PageViewModel(
                   titleWidget: Text(
                     onbaordinglist[1]['title'].toString(),
@@ -68,7 +73,10 @@ class _OnBoardingState extends State<OnBoarding> {
                         fontFamily: 'ElMessiri',
                         fontSize: 30),
                   ),
-                  body: onbaordinglist[1]['subtitle'],
+                  bodyWidget: Text(
+                    onbaordinglist[1]['subtitle'].toString(),
+                    style: TextStyle(fontFamily: 'ElMessiri', fontSize: 18),
+                  ),
                   image: Image.asset(
                     onbaordinglist[1]['image'].toString(),
                     height: 400,
@@ -82,7 +90,10 @@ class _OnBoardingState extends State<OnBoarding> {
                         fontFamily: 'ElMessiri',
                         fontSize: 30),
                   ),
-                  body: onbaordinglist[2]['subtitle'],
+                  bodyWidget: Text(
+                    onbaordinglist[2]['subtitle'].toString(),
+                    style: TextStyle(fontFamily: 'ElMessiri', fontSize: 18),
+                  ),
                   image: Image.asset(
                     onbaordinglist[2]['image'].toString(),
                     height: 400,
@@ -91,7 +102,7 @@ class _OnBoardingState extends State<OnBoarding> {
             ],
             next: Icon(
               Icons.navigate_next_rounded,
-              color: darkpurple,
+              size: 30,
             ),
             onDone: () {
               sharedpref.setString("tips", "1");
@@ -104,11 +115,17 @@ class _OnBoardingState extends State<OnBoarding> {
                   MaterialPageRoute(builder: (context) => const Login()));
             },
             showSkipButton: true,
-            skip: Text("SKIP"),
-            done: Text("FINISH"),
+            skip: Text(
+              "SKIP",
+              style: TextStyle(fontFamily: 'ElMessiri', fontSize: 18),
+            ),
+            done: Text(
+              "FINISH",
+              style: TextStyle(fontFamily: 'ElMessiri', fontSize: 18),
+            ),
             dotsDecorator: DotsDecorator(
               size: Size.square(
-                10,
+                15,
               ),
               activeSize: Size(20, 10),
               color: Colors.grey,
@@ -121,23 +138,3 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 }
-
-Widget OnboardinContains(String? title, String? subtitle, String? image) =>
-    Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        children: [
-          Text(
-            title!,
-            style:
-                const TextStyle(color: Colors.black, fontFamily: 'ElMessiri'),
-          ),
-          Image(image: AssetImage(image!)),
-          Text(
-            subtitle!,
-            style:
-                const TextStyle(color: Colors.black, fontFamily: 'ElMessiri'),
-          ),
-        ],
-      ),
-    );
