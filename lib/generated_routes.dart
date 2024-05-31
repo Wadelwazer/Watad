@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watad/business_logic/Landing_Page_Bloc/landing_page_bloc.dart';
 // import 'package:watad/business_logic/cubit/locale_cubit.dart';
-import 'package:watad/presintation/screen/login.dart';
+import 'package:watad/presintation/screen/Auth/login.dart';
 
 class RouteGenerator {
   final LandingPageBloc landingPageBloc = LandingPageBloc();

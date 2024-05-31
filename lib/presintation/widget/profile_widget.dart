@@ -1,4 +1,4 @@
-// ignore_for_file: use_super_parameters
+// ignore_for_file: use_super_parameters, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
@@ -24,7 +24,7 @@ class ProfileWidget extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 4,
-            child: buildEditIcon(color),
+            child: buildEditIcon(),
           ),
         ],
       ),
@@ -42,23 +42,24 @@ class ProfileWidget extends StatelessWidget {
           fit: BoxFit.cover,
           width: 128,
           height: 128,
-          child: InkWell(onTap: onClicked),
         ),
       ),
     );
   }
 
-  Widget buildEditIcon(Color color) => buildCircle(
+  Widget buildEditIcon() => buildCircle(
         color: Colors.white,
         all: 3,
         child: buildCircle(
-          color: grey,
-          all: 8,
-          child: const Icon(
-            Icons.edit,
-            color: Colors.white,
-            size: 20,
-          ),
+          color: darkpurple,
+          all: 0,
+          child: IconButton(
+              onPressed: onClicked,
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+                size: 25,
+              )),
         ),
       );
 

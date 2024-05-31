@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:watad/business_logic/cubit/locale_cubit.dart';
-import 'package:watad/presintation/screen/login.dart';
+import 'package:watad/presintation/screen/Auth/splash.dart';
 import 'package:watad/services/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
                   return supportedLocales.first;
                 },
                 debugShowCheckedModeBanner: false,
-                home: const Login());
+                home: const SplashScreen());
           }
           return const SizedBox();
         },

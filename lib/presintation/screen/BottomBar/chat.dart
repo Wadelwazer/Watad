@@ -1,8 +1,10 @@
-// ignore_for_file: sized_box_for_whitespace, non_constant_identifier_names
+// ignore_for_file: sized_box_for_whitespace, non_constant_identifier_names, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
 import 'package:watad/presintation/widget/bottonnavbar.dart';
+import 'package:watad/presintation/widget/circleimage.dart';
+import 'package:watad/presintation/widget/drawer.dart';
 import 'package:watad/services/app_localizations.dart';
 
 class Chatting extends StatefulWidget {
@@ -16,46 +18,63 @@ var chatmap = [
   {
     "user_id": "1",
     "user_name": "Mohamed",
-    "phonenumber_": "0543885096",
+    "phonenumber": "0543885096",
     "user_image": "X"
   },
   {
     "user_id": "1",
     "user_name": "Mohamed",
-    "phonenumber_": "0543885096",
-    "user_image": "X"
+    "phonenumber": "0543885096",
+    "user_image":
+        "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
   },
   {
     "user_id": "1",
     "user_name": "Mohamed",
-    "phonenumber_": "0543885096",
-    "user_image": "X"
+    "phonenumber": "0543885096",
+    "user_image":
+        "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
   },
   {
     "user_id": "1",
     "user_name": "Mohamed",
-    "phonenumber_": "0543885096",
-    "user_image": "X"
+    "phonenumber": "0543885096",
+    "user_image":
+        "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
   },
   {
     "user_id": "1",
     "user_name": "Mohamed",
-    "phonenumber_": "0543885096",
-    "user_image": "X"
+    "phonenumber": "0543885096",
+    "user_image":
+        "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
   }
 ];
 
 class _ChattingState extends State<Chatting> {
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const MyDrawer(),
+      key: scaffoldState,
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: grey,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: Text("chat".tr(context),
-              style: const TextStyle(
-                  color: Colors.white, fontFamily: 'ElMessiri'))),
+        centerTitle: true,
+        backgroundColor: darkpurple,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text("chat".tr(context),
+            style:
+                const TextStyle(color: Colors.white, fontFamily: 'ElMessiri')),
+        actions: [
+          IconButton(
+              onPressed: () {
+                scaffoldState.currentState!.openEndDrawer();
+              },
+              icon: const Icon(Icons.menu_outlined,
+                  color: Colors.white, size: 30)),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -107,14 +126,14 @@ Widget buildpost(String user_name, String user_number, String message,
                   ),
                 ),
                 leading: const CircleAvatar(
-                  backgroundColor: grey,
+                    backgroundColor: darkpurple,
 
-                  //replace text with category image here from network
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                )),
+                    //replace text with category image here from network
+                    child: SerivceIcon(
+                      imagePath:
+                          "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
+                      onClicked: null,
+                    ))),
             //end of image
           ),
         ));

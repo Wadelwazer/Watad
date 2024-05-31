@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
 import 'package:watad/main.dart';
-import 'package:watad/presintation/screen/postview.dart';
+import 'package:watad/presintation/screen/Home%20and%20Postes/postview.dart';
+import 'package:watad/presintation/widget/drawer.dart';
 import 'package:watad/presintation/widget/tab_item.dart';
-import 'package:watad/presintation/widget/bottonnavbar.dart';
 import 'package:watad/services/app_localizations.dart';
 
 class ServicesType extends StatefulWidget {
@@ -28,7 +28,7 @@ class _ServicesTypeState extends State<ServicesType> {
     {
       "pro_id": "1",
       "pro_desc":
-          "نتشرف بتقديم افضل الخدامات \n التي تنساب جميع التخصصات المطلوبه في السوق\n من سباكة و حدادة و نجارة و حتى اعمال بنائ"
+          "نتشرف بتقديم افضل الخدامات \n التي تsadkfjs;ljkdf;ljal;sjkdfj;laskjdf;ljkas;lkdfjl;askjd;lfjka;lsjd;fljkasdf\noiudaopsfojoasjdofoasiodiufojioasiodfuopiuasodhfoihaskdfwedf\nASSDUHYIPAsuhyfoihuiahfuihasoiudfuoasdipfhuouiSDOIFHUhdfDF\NAFIAHSIDFHOIHOIFHOIahsoidfjioAHOISFنساب جميع التخصصات المطلوبه في السوق\n من سباكة و حدادة و نجارة و حتى اعمال بنائ"
     },
     {
       "pro_id": "1",
@@ -57,15 +57,15 @@ class _ServicesTypeState extends State<ServicesType> {
     },
   ];
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         key: scaffoldState,
+        endDrawer: const MyDrawer(),
         appBar: AppBar(
-          backgroundColor: grey,
+          backgroundColor: darkpurple,
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.white),
           title: Text(
@@ -73,21 +73,28 @@ class _ServicesTypeState extends State<ServicesType> {
             style:
                 const TextStyle(color: Colors.white, fontFamily: 'ElMessiri'),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  scaffoldState.currentState!.openEndDrawer();
+                },
+                icon: const Icon(Icons.menu_outlined,
+                    color: Colors.white, size: 30)),
+          ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: Container(
                 height: 40,
-                //  margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey),
+                    color: Colors.grey[600]),
                 child: TabBar(
                   indicatorSize: TabBarIndicatorSize.tab,
                   dividerColor: Colors.transparent,
                   indicator: BoxDecoration(
-                      color: gold,
+                      color: darkpurple,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white)),
                   labelColor: Colors.white,
@@ -104,6 +111,7 @@ class _ServicesTypeState extends State<ServicesType> {
           ),
         ),
         body: TabBarView(children: [
+          //Service Order Building !!
           Column(
             children: [
               Expanded(
@@ -120,6 +128,8 @@ class _ServicesTypeState extends State<ServicesType> {
               ),
             ],
           ),
+          //End of Service Order Building !!
+          //Service Provide Building !!
           Column(
             children: [
               Expanded(
@@ -136,10 +146,8 @@ class _ServicesTypeState extends State<ServicesType> {
               ),
             ],
           ),
+          //End of Service Provide Building !!
         ]),
-        bottomNavigationBar: BottmnavgBar(
-          currentindex: 0,
-        ),
       ),
     );
   }
@@ -147,7 +155,7 @@ class _ServicesTypeState extends State<ServicesType> {
 
 Widget buildpost(String post, BuildContext context) => Card(
       color: Colors.grey[200],
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: MaterialButton(
         padding: const EdgeInsets.all(5),
         onPressed: () {
@@ -158,14 +166,26 @@ Widget buildpost(String post, BuildContext context) => Card(
             ),
           ));
         },
-        child: Text(
-          post,
-          //textAlign: TextAlign.justify,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          textDirection: TextDirection.rtl,
-          style:
-              const TextStyle(fontFamily: 'ElMessiri', fontSize: 18, height: 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+                onPressed: () {
+                  //facorite presse Here!
+                },
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                )),
+            Text(
+              post,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              textDirection: TextDirection.rtl,
+              style: const TextStyle(
+                  fontFamily: 'ElMessiri', fontSize: 18, height: 2),
+            ),
+          ],
         ),
       ),
     );

@@ -13,7 +13,7 @@ class CustomeButtom extends StatelessWidget {
         width: 200,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
-          color: gold,
+          color: darkpurple,
           borderRadius: BorderRadius.circular(20),
         ),
         child: MaterialButton(

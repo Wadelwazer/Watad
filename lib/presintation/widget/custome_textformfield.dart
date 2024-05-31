@@ -20,33 +20,32 @@ class CustomeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      //  margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: TextFormField(
         validator: valid,
         controller: controller,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: gold)),
+              borderSide: const BorderSide(color: darkpurple)),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: gold)),
+              borderSide: const BorderSide(color: darkpurple)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: gold)),
+              borderSide: const BorderSide(color: darkpurple)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: gold)),
+              borderSide: const BorderSide(color: darkpurple)),
           disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: gold)),
+              borderSide: const BorderSide(color: darkpurple)),
           hintText: hinttext!,
-          //  hintStyle: TextStyle(color: blue),
+          hintStyle: TextStyle(color: darkpurple),
           border: InputBorder.none,
           prefixIcon: Icon(
             icon!,
-            color: gold,
+            color: darkpurple,
           ),
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:watad/constant/my_color.dart';
-import 'package:watad/presintation/widget/bottonnavbar.dart';
+import 'package:watad/presintation/widget/drawer.dart';
 import 'package:watad/services/app_localizations.dart';
 
 class PostView extends StatelessWidget {
@@ -13,10 +13,21 @@ class PostView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: scaffoldState,
+      endDrawer: const MyDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: grey,
+        backgroundColor: darkpurple,
+        actions: [
+          IconButton(
+              onPressed: () {
+                scaffoldState.currentState!.openEndDrawer();
+              },
+              icon: const Icon(Icons.menu_outlined,
+                  color: Colors.white, size: 30)),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -27,12 +38,19 @@ class PostView extends StatelessWidget {
               color: Colors.grey[200],
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ),
+                  ),
                   Text(
                     post!,
                     textAlign: TextAlign.justify,
                     maxLines: 20,
-                    //overflow: TextOverflow.ellipsis,
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
                         fontFamily: 'ElMessiri', fontSize: 18, height: 2),
@@ -44,12 +62,12 @@ class PostView extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: grey),
+                  borderRadius: BorderRadius.circular(20), color: darkpurple),
               child: MaterialButton(
                 onPressed: () async {
-                  // if (await canLaunchUrl(Uri.parse('tel://$number'))) {
-                  //   await launchUrl(Uri.parse('tel:$number'));
-                  // }
+                  if (await canLaunchUrl(Uri.parse('tel://$number'))) {
+                    await launchUrl(Uri.parse('tel:$number'));
+                  }
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +92,7 @@ class PostView extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: grey),
+                  borderRadius: BorderRadius.circular(20), color: darkpurple),
               child: MaterialButton(
                 onPressed: () async {
                   if (await canLaunchUrl(Uri.parse('tel://$number'))) {
@@ -133,9 +151,6 @@ class PostView extends StatelessWidget {
             )
           ],
         ),
-      ),
-      bottomNavigationBar: BottmnavgBar(
-        currentindex: 0,
       ),
     );
   }

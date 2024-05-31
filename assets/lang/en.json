@@ -36,6 +36,11 @@
     "Service Order": "Service Order",
     "Service Provide": "Service Provide",
     "Type of Post":"Type of Post",
-"Favorite":"Favorite",
-"Add to Favorite":"Add to Favorite"
+    "Favorite":"Favorite",
+    "Add to Favorite":"Add to Favorite",
+    "Welcome Back":"Welcome Back",
+    "Logout":"Logout",
+    "Home":"Home",
+    "Gallery":"Gallery",
+    "Camera":"Camera"
 }

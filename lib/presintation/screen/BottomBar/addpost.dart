@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
 import 'package:watad/presintation/widget/bottonnavbar.dart';
 import 'package:watad/presintation/widget/customeButtom.dart';
+import 'package:watad/presintation/widget/drawer.dart';
 import 'package:watad/services/app_localizations.dart';
 
 class AddPost extends StatefulWidget {
@@ -16,6 +17,8 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
   final TextEditingController serviceController = TextEditingController();
   final TextEditingController postController = TextEditingController();
   String _selectedservicetype = "سباكة";
@@ -28,18 +31,28 @@ class _AddPostState extends State<AddPost> {
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-              stops: [0.6, 0.5],
-              colors: [grey, Colors.white],
+              stops: [0.6, 0.8],
+              colors: [darkpurple, Colors.white],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter)),
       child: Scaffold(
+        endDrawer: const MyDrawer(),
+        key: scaffoldState,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.transparent,
           iconTheme: const IconThemeData(color: Colors.white),
-          title: Text("Add Post",
+          title: const Text("Add Post",
               style: const TextStyle(
                   color: Colors.white, fontFamily: 'ElMessiri')),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  scaffoldState.currentState!.openEndDrawer();
+                },
+                icon: const Icon(Icons.menu_outlined,
+                    color: Colors.white, size: 30)),
+          ],
         ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
@@ -51,9 +64,10 @@ class _AddPostState extends State<AddPost> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: grey),
+                  border: Border.all(color: darkpurple),
                   boxShadow: const [
-                    BoxShadow(color: grey, blurRadius: 4, offset: Offset(2, 5))
+                    BoxShadow(
+                        color: darkpurple, blurRadius: 4, offset: Offset(2, 5))
                   ]),
               child: Form(
                   child: Container(
@@ -206,7 +220,7 @@ Widget buildTextField() => TextField(
 
 InputBorder border() => OutlineInputBorder(
     borderRadius: BorderRadius.circular(20),
-    borderSide: const BorderSide(color: grey));
+    borderSide: const BorderSide(color: darkpurple));
 
 class buildDropdown extends StatefulWidget {
   String? value;

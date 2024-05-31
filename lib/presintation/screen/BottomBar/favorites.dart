@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:watad/constant/my_color.dart';
 import 'package:watad/main.dart';
-import 'package:watad/presintation/screen/postview.dart';
+import 'package:watad/presintation/screen/Home%20and%20Postes/postview.dart';
 import 'package:watad/presintation/widget/bottonnavbar.dart';
-import 'package:watad/services/app_localizations.dart';
+import 'package:watad/presintation/widget/drawer.dart';
 
 class Favorites extends StatefulWidget {
   const Favorites({super.key});
@@ -49,14 +49,27 @@ class _FavoritesState extends State<Favorites> {
   ];
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: scaffoldState,
+      endDrawer: const MyDrawer(),
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: grey,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: Text("Favorite",
-              style: const TextStyle(
-                  color: Colors.white, fontFamily: 'ElMessiri'))),
+        centerTitle: true,
+        backgroundColor: darkpurple,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text("Favorite",
+            style:
+                const TextStyle(color: Colors.white, fontFamily: 'ElMessiri')),
+        actions: [
+          IconButton(
+              onPressed: () {
+                scaffoldState.currentState!.openEndDrawer();
+              },
+              icon: const Icon(Icons.menu_outlined,
+                  color: Colors.white, size: 30)),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
