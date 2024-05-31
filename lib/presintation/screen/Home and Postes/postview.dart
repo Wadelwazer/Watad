@@ -102,6 +102,7 @@ class PostView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    //user phone number from server here !!
                     Text(
                       number!,
                       style: const TextStyle(
