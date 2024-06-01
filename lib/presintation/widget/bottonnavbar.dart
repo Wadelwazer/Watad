@@ -21,28 +21,28 @@ class _BottmnavgBar extends State<BottmnavgBar> {
   List<BottomNavigationBarItem> bottomNavItems(BuildContext context) {
     List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        backgroundColor: darkpurple,
         icon: Icon(Icons.home_outlined),
         label: 'home'.tr(context),
       ),
       BottomNavigationBarItem(
-        backgroundColor: darkpurple,
-
         icon: Icon(Icons.person_outlined), //grid_3x3
         label: 'profile'.tr(context),
       ),
       BottomNavigationBarItem(
-        backgroundColor: darkpurple,
-        icon: Icon(Icons.add_circle_outline_outlined),
-        label: 'add'.tr(context),
-      ),
+          icon: Icon(
+            Icons.add_circle_outline_outlined,
+            color: darkpurple,
+          ),
+          backgroundColor: darkpurple,
+          label: ""),
       BottomNavigationBarItem(
-        backgroundColor: darkpurple,
-        icon: Icon(Icons.favorite_outline),
+        icon: Icon(
+          Icons.favorite_outline,
+          size: 30,
+        ),
         label: 'favourite'.tr(context),
       ),
       BottomNavigationBarItem(
-        backgroundColor: darkpurple,
         icon: Icon(Icons.chat_outlined),
         label: "chat".tr(context),
       ),
@@ -55,8 +55,9 @@ class _BottmnavgBar extends State<BottmnavgBar> {
     return BottomNavigationBar(
       items: bottomNavItems(context), //bottomNavItems,
       currentIndex: widget.currentindex,
-      selectedItemColor: Colors.white, //Theme.of(context).colorScheme.primary,
-      unselectedItemColor: Colors.grey[300],
+      selectedItemColor:
+          Colors.blueGrey, //Theme.of(context).colorScheme.primary,
+      unselectedItemColor: Colors.grey,
       selectedFontSize: 17,
       selectedLabelStyle: TextStyle(fontFamily: 'ElMessiri'),
       unselectedLabelStyle: TextStyle(fontFamily: 'Gordita'),
